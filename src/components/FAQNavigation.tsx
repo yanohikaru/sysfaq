@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { ChevronLeft } from 'lucide-react';
 
 interface FAQNavigationProps {
@@ -10,7 +10,7 @@ export const FAQNavigation = ({ path, onNavigate }: FAQNavigationProps) => {
   return (
     <div className="flex items-center space-x-2 text-sm text-gray-400 mb-6">
       {path.map((item, index) => (
-        <React.Fragment key={index}>
+        <Fragment key={index}>
           <span
             onClick={() => onNavigate(index)}
             className={`
@@ -23,7 +23,7 @@ export const FAQNavigation = ({ path, onNavigate }: FAQNavigationProps) => {
           {index < path.length - 1 && (
             <span className="text-gray-600">/</span>
           )}
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
   );
