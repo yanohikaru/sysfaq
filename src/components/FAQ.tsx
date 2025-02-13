@@ -1,17 +1,8 @@
-import { FAQSearch } from './FAQSearch';
 import { faqData } from '../data/faqData';
 
 export const FAQ = () => {
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="bg-white py-8 px-4">
-        <h1 className="text-3xl font-bold text-center mb-12">質問</h1>
-        
-        <div className="mb-12">
-          <FAQSearch />
-        </div>
-      </div>
-
       <div className="space-y-2 px-4">
         {faqData.map((category) => (
           <div key={category.id} className="mb-8">

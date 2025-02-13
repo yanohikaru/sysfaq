@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { FAQItem, searchFAQ } from '../data/faqData';
+import { FAQItem } from '../data/faqData';
 
-export const FAQSearch = () => {
+interface FAQSearchProps {
+  onSearch: (results: FAQItem[]) => void;
+}
+
+export const FAQSearch = ({ onSearch }: FAQSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<FAQItem[]>([]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
-    const results = searchFAQ(query);
-    setSearchResults(results);
+    onSearch(query);
   };
 
   return (
@@ -36,21 +38,6 @@ export const FAQSearch = () => {
           />
         </svg>
       </div>
-      
-      {searchQuery && (
-        <div className="search-results mt-4 px-4">
-          {searchResults.length > 0 ? (
-            searchResults.map((item) => (
-              <div key={item.id} className="bg-white p-4 rounded-lg shadow-sm mb-2 border border-gray-200 hover:shadow-md transition-shadow">
-                <h3 className="font-bold text-lg">{item.title}</h3>
-                {item.answer && <p className="mt-2 text-gray-600">{item.answer}</p>}
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500 text-center py-4">検索結果が見つかりませんでした</p>
-          )}
-        </div>
-      )}
     </div>
   );
 }; 
