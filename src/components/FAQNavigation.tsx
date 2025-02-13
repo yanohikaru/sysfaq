@@ -6,21 +6,25 @@ interface FAQNavigationProps {
   onNavigate: (index: number) => void;
 }
 
-export const FAQNavigation: React.FC<FAQNavigationProps> = ({ path, onNavigate }) => {
-  if (path.length <= 1) return null;
-
+export const FAQNavigation = ({ path, onNavigate }: FAQNavigationProps) => {
   return (
-    <div className="flex items-center space-x-2 mb-6 text-sm">
-      <button
-        onClick={() => onNavigate(path.length - 2)}
-        className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
-      >
-        <ChevronLeft className="w-4 h-4" />
-        戻る
-      </button>
-      <div className="text-gray-400">
-        {path.join(' > ')}
-      </div>
+    <div className="flex items-center space-x-2 text-sm text-gray-400 mb-6">
+      {path.map((item, index) => (
+        <React.Fragment key={index}>
+          <span
+            onClick={() => onNavigate(index)}
+            className={`
+              cursor-pointer hover:text-blue-400 transition-colors
+              ${index === path.length - 1 ? 'text-blue-400' : ''}
+            `}
+          >
+            {item}
+          </span>
+          {index < path.length - 1 && (
+            <span className="text-gray-600">/</span>
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 };

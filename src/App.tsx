@@ -77,18 +77,24 @@ function App() {
   const displayItems = isSearching ? searchResults : currentItems;
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="bg-white py-8 px-4">
-        <h1 className="text-3xl font-bold text-center mb-12">質問</h1>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="bg-gradient-to-r from-blue-900 to-gray-900 py-12 px-4 shadow-xl">
+        <h1 className="text-4xl font-bold text-center mb-12 text-gray-100 tracking-wider">
+          <span className="text-blue-400">情シス・Security</span> FAQ
+        </h1>
         <div className="mb-12 max-w-4xl mx-auto">
           <FAQSearch onSearch={searchFAQ} />
         </div>
       </div>
       
-      <div className="max-w-4xl mx-auto px-4">
-        {!isSearching && <FAQNavigation path={navigationPath} onNavigate={handleNavigation} />}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {!isSearching && (
+          <div className="mb-6">
+            <FAQNavigation path={navigationPath} onNavigate={handleNavigation} />
+          </div>
+        )}
         
-        <div className="space-y-2 mt-4">
+        <div className="space-y-3">
           {displayItems.map((item) => (
             <FAQItemComponent
               key={item.id}
@@ -102,7 +108,7 @@ function App() {
         </div>
 
         {displayItems.length === 0 && (
-          <div className="text-center text-gray-500 mt-8">
+          <div className="text-center text-gray-400 mt-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
             質問が見つかりませんでした
           </div>
         )}
