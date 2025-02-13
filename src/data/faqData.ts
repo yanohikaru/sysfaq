@@ -3,7 +3,7 @@ export interface FAQItem {
   title: string;
   children?: FAQItem[];
   answer?: string;
-  question: string;
+  question?: string;
   keywords?: string[];
 }
 
@@ -1037,7 +1037,7 @@ export const searchFAQ = (query: string): FAQItem[] => {
   if (!searchTerm) return [];
   
   return faqData.filter(item => {
-    const matchQuestion = item.question.toLowerCase().includes(searchTerm);
+    const matchQuestion = item.question?.toLowerCase().includes(searchTerm);
     const matchKeywords = item.keywords?.some(keyword => 
       keyword.toLowerCase().includes(searchTerm)
     );
